@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>test</title>
+<meta charset="utf-8">
+<style type="text/css">
+	.main{
+		/*position: relative;*/
+		width: 600px;
+		height: 300px;
+		border: 1px solid black;
+		vertical-align: middle;
+		line-height: 300px;
+	}
+	.test{
+		/*position: absolute;*/
+		width: 200px;
+		height: 100px;
+		border: 1px solid red;
+		vertical-align: middle;
+		/*top: 50%;
+		margin-top: -50px;*/
+	}
+	.link-test{
+		background-color: #eee;
+		border: 1px solid #aaa;
+	}
+	.left{
+		margin-left: 100px;
+	}
+	.right{
+		margin-right: 100px;
+	}
+	.top{
+		/*margin-top: 100px;*/
+		padding-top: 100px;
+	}
+	.bottom{
+		margin-bottom: 100px;
+	}
+</style>
+</head>
+<body> 
+	<div class="main">
+		<!-- <div class="test">test</div> -->
+		<a href="##" class="link">test</a>
+	</div>
+	<a href="##" class="link-test left">link-test</a>
+	<a href="##" class="link-test right">link-test</a>
+	<a href="##" class="link-test top">link-test</a>
+	<a href="##" class="link-test bottom">link-test</a>
+	<div class="div-test">div-test</div>
+	<div class="div-test">div-test</div>
+
+	<input type="button" value="click me4" id="btn4">
+	<input type="button" value="click me5" id="btn5">
+
+	<ul id="list">
+	 <li id="item1" >item1</li>
+	 <li id="item2" >item2</li>
+	 <li id="item3" >item3</li>
+	</ul>
+
+	<ul id="list2">
+		<li id="item4" >item4</li>
+		<li id="item5" >item5</li>
+		<li id="item6" >item6</li>
+	</ul>
+	<script>
+	var btn4 = document.getElementById("btn4");
+    btn4.addEventListener("click",hello1);//执行
+    btn4.addEventListener("click",hello2);//执行
+
+	var btn5 = document.getElementById("btn5");
+	btn5.addEventListener("click",hello1);//执行了
+	btn5.addEventListener("click",hello2);//不执行
+	btn5.removeEventListener("click",hello2);
+
+	function hello1(){
+	 alert("hello 1");
+	}
+	function hello2(){
+	 alert("hello 2");
+	}
+
+	var item1 = document.getElementById("item1");
+	var item2 = document.getElementById("item2");
+	var item3 = document.getElementById("item3");
+
+	document.addEventListener("click",function(event){
+	 var target = event.target;
+	 console.log(target);//如果点击第一个，显示<li id="item1">item1</li>
+	 if(target == item1){
+	 alert("hello item1");
+	 }else if(target == item2){
+	 alert("hello item2");
+	 }else if(target == item3){
+	 alert("hello item3");
+	 }
+	});
+
+	var list = document.getElementById("list2");
+	var item = list.getElementsByTagName("li");
+	for(var i=0;i<item.length;i++){
+		item[i].onclick = function(){
+			alert(this.innerHTML);
+		}
+	}
+
+	</script>
+</body>
+</html>
+
